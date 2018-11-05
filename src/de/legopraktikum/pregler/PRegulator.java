@@ -10,8 +10,9 @@ public class PRegulator {
 	
 	private static final int GENERAL_MOTOR_SPEED = 220;
 	private static final float K_P_KRIT = 1000f;
-	private static final float SHOULD_VALUE = 0.19f;
-	private static final float THRESHOLD = 40f;
+	private static final float SHOULD_VALUE = 0.19f; // the value for the edge of the line. The middle of 0.05 (black)
+													 // and 0.33 (white).
+	private static final float THRESHOLD = 40f; // threshold +/- to the SHOULD_VALUE.
 	
 	private EV3ColorSensor colorSensor;
 	private SampleProvider sampleProvider;
@@ -59,7 +60,7 @@ public class PRegulator {
 		// TODO: Only for tests: Show control values
 		System.out.println(y);
 		
-		// TODO: Replace operators fittingly to direction change needed.
+		// Setting the speed for each motor accordingly.
 		if (y < (-1 * THRESHOLD)) {
 			speedR = GENERAL_MOTOR_SPEED + Math.abs(y);
 			motorL.backward();
